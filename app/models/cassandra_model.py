@@ -20,12 +20,14 @@ class EventGEnreEnum(str, enum.Enum):
     DANCE = "DANCE"
     EDUCATION = "EDUCATION"
 
+
 class SeatTypeEnum(str, enum.Enum):
     NORMAL = "NORMAL"
     PREMIUM = "PREMINUM"
     RECLINER = "RECLINER"
     FANZONE = "FANZONE"
-    
+
+
 class StatusEnum(str, enum.Enum):
     AVAILABLE = "AVAILABLE"
     BOOKED = "BOOKED"
@@ -90,7 +92,8 @@ class ShowByEventModel(Model):
     show_id = columns.UUID()
     venue_id = columns.UUID()
     venue_name = columns.Text()
-    
+
+
 class ShowModel(Model):
     __table_name__ = "shows"
 
@@ -100,6 +103,7 @@ class ShowModel(Model):
     screen_name = columns.Text()
     show_time = columns.DateTime()
     is_active = columns.Boolean(default=True)
+
 
 class SeatsByShowModel(Model):
     __table_name__ = "seat_by_show"
