@@ -7,7 +7,7 @@ from sqlalchemy import DateTime, ForeignKey, Numeric, String, func
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from app.db import Base
+from app.db.postgre_db import Base
 
 
 class BookingStatus(str, Enum):
