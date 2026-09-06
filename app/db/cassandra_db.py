@@ -1,8 +1,8 @@
 from async_cassandra import AsyncCluster
+from cassandra.cqlengine import connection
 from cassandra.cqlengine.management import sync_table
-
-from app.core.config import setting
-from app.models.cassandra_model import (
+from core.config import setting
+from models.cassandra_model import (
     EventModel,
     MovieModel,
     SeatsByShowModel,
@@ -27,6 +27,14 @@ class CassandraDB:
         )
 
         self.session = await self.cluster.connect("ticket_booking")
+
+        # sync function runs on startup
+        connection.setup(
+            hosts=[setting.contact_points],
+            default_keyspace="ticket_booking",
+            port=setting.cassandra_port,
+            protocol_version=5,
+        )
 
         # Automaticaly create table if they do not exist
         sync_table(MovieModel)

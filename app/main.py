@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
 
+from api.v1.router import route
+from db.cassandra_db import cassandra_db
 from fastapi import FastAPI
-
-from app.db.cassandra_db import cassandra_db
 
 
 @asynccontextmanager
@@ -15,6 +15,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Ticket Booking", lifespan=lifespan)
+
+
+app.include_router(route)
 
 
 @app.get("/")
